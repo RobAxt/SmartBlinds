@@ -1,5 +1,5 @@
 # SmartBlinds :construction:
-Smart Light based on Homie-ESP8266 and Wemos D1 Mini with a stepper Motor
+Smart Blinds based on Homie-ESP8266 and Wemos D1 Mini with a 28byj-48 stepper Motor
 
 **GPIO**
 * Output to Motor Driver (ULN2803): D5, D6, D7, D8
