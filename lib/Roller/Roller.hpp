@@ -6,16 +6,17 @@
 
 class Roller {
   public:
-    Roller(unsigned int currPos, unsigned int maxPos, bool direction);
+    Roller(int currPos,  int maxPos, bool direction);
     ~Roller() {};
 	
 	  void setup();
+    void setZero() { _currentPos = _targetPos = 0; };
+    void setZero( int currPos ){ _currentPos = currPos; };
+    void setMaxPosition() { _maxPos = _currentPos != 0 ? _currentPos : _maxPos; };
+    void setMaxPosition( int max) { _maxPos = max; };
+    void setDirection(bool direction) { _stepper.setDirection(direction); };
 
-    void setZero(){_currentPos = 0;};
-    void setMaxPosition(){_maxPos =_currentPos;};
-    void setMaxPosition(unsigned int max) {_maxPos = max;};
-
-    void moveTo(unsigned int percentage);
+    void moveTo(int percentage);
     void moveUp();
     void moveDown();
     void moveTop();
@@ -23,20 +24,20 @@ class Roller {
     void stop();
     bool isMoving();
 
-    unsigned int getMaxPosition() {return _maxPos;};
-    unsigned int getCurrentPosition() {return _currentPos;};
-	  unsigned int getCurrentPercentage() {return 100 * _currentPos/_maxPos;};
+    int getMaxPosition() { return _maxPos; };
+    int getCurrentPosition() { return _currentPos; };
+	  int getCurrentPercentage() { return 100 * _currentPos/_maxPos; };
 
   private:
-    unsigned int _currentPos;
-    unsigned int _maxPos;
-    unsigned int _targetPos;
+    int _currentPos;
+    int _maxPos;
+    int _targetPos;
 
     SimpleStepper _stepper;
     Ticker _stepperISR;
 
     static const uint8_t DELTA_MOVE = 2;
-    static const uint8_t MOTOR_SPEED_MS = 2;
+    static const uint8_t MOTOR_SPEED_MS = 3;
 };
 
-#endif
+#endif //Roller_hpp
